@@ -1,0 +1,48 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "C/C++: clang++ build active file for protbuf test",
+			"command": "/usr/bin/clang++",
+			"args": [
+				"-std=c++17",
+				"-fcolor-diagnostics",
+				"-fansi-escape-codes",
+				"-I${workspaceFolder}/src",
+				"-I/opt/homebrew/include",
+				"-L/opt/homebrew/lib",
+				"-lprotobuf",
+				"-g",
+				"${workspaceFolder}/src/proto/*.cc",
+				"${workspaceFolder}/src/*.cpp",
+				"-o",
+				"${workspaceFolder}/build/sample01"
+			],
+			"options": {
+				"cwd": "${fileDirname}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build",
+			"detail": "compiler: /usr/bin/clang++"
+		},
+		{
+			// need to fix
+			"type": "shell",
+			"label": "Protobuf compile for c/c++",
+			"command": "protoc",
+			"args": [
+				"--proto_path=${workspaceFolder}",
+				"--cpp_out=${workspaceFolder}/src",
+				"**/*.proto"
+			],
+			"options": {
+				"cwd": "${fileDirname}"
+			},
+			"group": "build",
+			"detail": "compiler: /opt/homebrew/bin/protoc"
+		}
+	]
+}
